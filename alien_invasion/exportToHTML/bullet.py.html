@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>bullet.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #8c8c8c; font-style: italic;}
+.s3 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+bullet.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">pygame</span>
+<span class="s0">from </span><span class="s1">pygame.sprite </span><span class="s0">import </span><span class="s1">Sprite</span>
+
+<span class="s0">class </span><span class="s1">Bullet(Sprite):</span>
+    <span class="s2">&quot;&quot;&quot; A class to manage bullets fired from the ship. &quot;&quot;&quot;</span>
+
+    <span class="s0">def </span><span class="s1">__init__(self, ai_settings, screen, ship):</span>
+        <span class="s2">&quot;&quot;&quot; Create a bullet object at the ship's current position. &quot;&quot;&quot;</span>
+        <span class="s1">super(Bullet, self).__init__()</span>
+        <span class="s1">self.screen = screen</span>
+
+        <span class="s2"># Create a bullet rect at (0,0) and then set its position.</span>
+        <span class="s1">self.rect = pygame.Rect(</span><span class="s3">0</span><span class="s1">, </span><span class="s3">0</span><span class="s1">, ai_settings.bullet_width, ai_settings.bullet_height)</span>
+        <span class="s1">self.rect.centerx = ship.rect.centerx</span>
+        <span class="s1">self.rect.top = ship.rect.top</span>
+
+        <span class="s2"># Store the bullet's position as a decimal value.</span>
+        <span class="s1">self.y = float(self.rect.y)</span>
+
+        <span class="s1">self.color = ai_settings.bullet_color</span>
+        <span class="s1">self.speed_factor = ai_settings.bullet_speed_factor</span>
+
+    <span class="s0">def </span><span class="s1">update(self):</span>
+        <span class="s2">&quot;&quot;&quot; Move the bullet up the screen. &quot;&quot;&quot;</span>
+        <span class="s2"># Update the decimal position of the bullet.</span>
+        <span class="s1">self.y -= self.speed_factor</span>
+        <span class="s2"># Update the rect position.</span>
+        <span class="s1">self.rect.y = self.y</span>
+
+    <span class="s0">def </span><span class="s1">draw_bullet(self):</span>
+        <span class="s2">&quot;&quot;&quot; Draw the bullet to the screen. &quot;&quot;&quot;</span>
+        <span class="s1">pygame.draw.rect(self.screen, self.color, self.rect)</span>
+</pre>
+</body>
+</html>

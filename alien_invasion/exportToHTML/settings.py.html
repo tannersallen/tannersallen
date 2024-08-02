@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>settings.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #8c8c8c; font-style: italic;}
+.s3 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+settings.py</font>
+</center></td></tr></table>
+<pre><span class="s0">class </span><span class="s1">Settings():</span>
+    <span class="s2">&quot;&quot;&quot; A class to store all settings for Alien Invasion. &quot;&quot;&quot;</span>
+
+    <span class="s0">def </span><span class="s1">__init__(self):</span>
+        <span class="s2">&quot;&quot;&quot; Initialize the game's static settings. &quot;&quot;&quot;</span>
+        <span class="s2"># Screen Settings</span>
+        <span class="s1">self.screen_width = </span><span class="s3">1500</span>
+        <span class="s1">self.screen_height = </span><span class="s3">900</span>
+        <span class="s1">self.bg_color = (</span><span class="s3">207</span><span class="s1">, </span><span class="s3">146</span><span class="s1">, </span><span class="s3">54</span><span class="s1">)</span>
+
+        <span class="s2"># Ship settings.</span>
+        <span class="s1">self.ship_speed_factor = </span><span class="s3">1.5</span>
+        <span class="s1">self.ship_limit = </span><span class="s3">3</span>
+
+        <span class="s2"># Bullet settings.</span>
+        <span class="s1">self.bullet_speed_factor = </span><span class="s3">1</span>
+        <span class="s1">self.bullet_width = </span><span class="s3">6</span>
+        <span class="s1">self.bullet_height = </span><span class="s3">15</span>
+        <span class="s1">self.bullet_color = </span><span class="s3">14</span><span class="s1">, </span><span class="s3">243</span><span class="s1">, </span><span class="s3">69</span>
+        <span class="s1">self.bullets_allowed = </span><span class="s3">4</span>
+
+        <span class="s2"># Alien settings.</span>
+        <span class="s1">self.alien_speed_factor = </span><span class="s3">1</span>
+        <span class="s1">self.fleet_drop_speed = </span><span class="s3">15</span>
+
+        <span class="s2"># How quickly the game speeds up</span>
+        <span class="s1">self.speedup_scale = </span><span class="s3">1.1</span>
+        <span class="s2"># How quickly the alien point values increase</span>
+        <span class="s1">self.score_scale = </span><span class="s3">1.5</span>
+
+        <span class="s1">self.initialize_dynamic_settings()</span>
+
+        <span class="s2"># fleet_direction of 1 represents right; -1 represents left.</span>
+        <span class="s1">self.fleet_direction = </span><span class="s3">1</span>
+
+
+    <span class="s0">def </span><span class="s1">initialize_dynamic_settings(self):</span>
+        <span class="s2">&quot;&quot;&quot; Initialize settings that change throughout the game. &quot;&quot;&quot;</span>
+        <span class="s1">self.ship_speed_factor = </span><span class="s3">1.5</span>
+        <span class="s1">self.bullet_speed_factor = </span><span class="s3">3</span>
+        <span class="s1">self.alien_speed_factor = </span><span class="s3">1</span>
+
+        <span class="s2"># Scoring</span>
+        <span class="s1">self.alien_points = </span><span class="s3">50</span>
+
+        <span class="s2"># fleet_direction of 1 represents right; -1 represents left.</span>
+        <span class="s1">self.fleet_direction = </span><span class="s3">1</span>
+
+
+    <span class="s0">def </span><span class="s1">increase_speed(self):</span>
+        <span class="s2">&quot;&quot;&quot; Increase speed settings and alien point values. &quot;&quot;&quot;</span>
+        <span class="s1">self.ship_speed_factor *= self.speedup_scale</span>
+        <span class="s1">self.bullet_speed_factor *= self.speedup_scale</span>
+        <span class="s1">self.alien_speed_factor *= self.speedup_scale</span>
+
+        <span class="s1">self.alien_points = int(self.alien_points * self.score_scale)</span>
+        <span class="s1">print(self.alien_points)</span></pre>
+</body>
+</html>
